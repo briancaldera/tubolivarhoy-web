@@ -33,7 +33,7 @@ export default function Footer() {
             <h3 className="font-semibold text-gray-900 mb-4">App</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/tubolivarhoy#features" className="text-gray-600 hover:text-primary-end transition-colors">
+                <Link href="/#features" className="text-gray-600 hover:text-primary-end transition-colors">
                   Funcionalidades
                 </Link>
               </li>
@@ -65,17 +65,17 @@ export default function Footer() {
             <h3 className="font-semibold text-gray-900 mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/tubolivarhoy/terms" className="text-gray-600 hover:text-primary-end transition-colors">
+                <Link href="/terms" className="text-gray-600 hover:text-primary-end transition-colors">
                   Términos de uso
                 </Link>
               </li>
               <li>
-                <Link href="/tubolivarhoy/privacy" className="text-gray-600 hover:text-primary-end transition-colors">
+                <Link href="/privacy" className="text-gray-600 hover:text-primary-end transition-colors">
                   Privacidad
                 </Link>
               </li>
               <li>
-                <Link href="/tubolivarhoy/refunds" className="text-gray-600 hover:text-primary-end transition-colors">
+                <Link href="/refunds" className="text-gray-600 hover:text-primary-end transition-colors">
                   Reembolso
                 </Link>
               </li>
