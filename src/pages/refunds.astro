@@ -1,0 +1,17 @@
+---
+import TuBolivarHoyLayout from "@/layouts/TuBolivarHoyLayout.astro";
+import Navbar from "../../components/organisms/tubolivarhoy/Navbar";
+import Footer from "../../components/organisms/tubolivarhoy/Footer";
+import { Content as RefundPolicy } from "../../components/molecules/ReturnPolicy.md";
+---
+
+<TuBolivarHoyLayout>
+  <Navbar />
+  <main>
+    <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <h1 class="font-bold text-2xl">Política de reembolso</h1>
+      <RefundPolicy/>
+    </div>
+  </main>
+  <Footer />
+</TuBolivarHoyLayout>
