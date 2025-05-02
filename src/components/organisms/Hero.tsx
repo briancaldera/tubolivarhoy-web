@@ -7,7 +7,7 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2 space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
                 Cambio de Divisas
               </span>{" "}
               Simplificado
@@ -18,7 +18,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share"
-                className="bg-gradient-to-r from-primary-start to-primary-end text-white px-6 py-3 rounded-md hover:opacity-90 transition-opacity font-medium"
+                className="bg-linear-to-r from-primary-start to-primary-end text-white px-6 py-3 rounded-md hover:opacity-90 transition-opacity font-medium"
               >
                 Descargar ahora
               </Link>
@@ -32,7 +32,7 @@ export default function Hero() {
           </div>
           <div className="md:w-1/2 relative">
             <div className="relative w-full max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-start to-primary-end rounded-3xl blur-3xl opacity-20"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-primary-start to-primary-end rounded-3xl blur-3xl opacity-20"></div>
               <img
                 src="https://play-lh.googleusercontent.com/WVGgVbKPgYzu8J-6JMZqlDk5HIV7bByIDAmpgkUDrwvBgbfYtXQFHBgJLH80lLlZTKQ=w240-h480-rw"
                 alt="Tu Bolívar Hoy icon"

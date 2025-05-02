@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/tubolivarhoy" className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-linear-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
                 Tu Bolívar Hoy
               </span>
             </Link>
@@ -26,7 +26,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share"
-              className="bg-gradient-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity"
+              className="bg-linear-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity"
             >
               Descargar
             </Link>
@@ -77,7 +77,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="#download"
-              className="block bg-gradient-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity w-fit"
+              className="block bg-linear-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity w-fit"
               onClick={() => setIsMenuOpen(false)}
             >
               Download

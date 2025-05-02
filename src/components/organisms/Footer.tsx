@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-linear-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
                 Tu Bolívar Hoy
               </span>
             </Link>
