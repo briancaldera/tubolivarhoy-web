@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import Navbar from '@/components/organisms/Navbar.tsx'
-import Footer from '@/components/organisms/Footer.tsx'
+import Navbar from '@/components/organisms/Navbar'
+import Footer from '@/components/organisms/Footer'
 import './global.css'
 
 export const metadata: Metadata = {
