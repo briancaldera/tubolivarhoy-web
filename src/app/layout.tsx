@@ -6,7 +6,7 @@ import './global.css'
 
 export const metadata: Metadata = {
   title:
-    'Tu Bolívar Hoy - Plataforma para la gestión de historias clínicas de la Facultad de Odontología de la UGMA',
+    'Tu Bolívar Hoy - Observa el tipo de cambio de referencia cómodamente desde tu móvil.',
   description:
     'Observa el tipo de cambio de referencia cómodamente desde tu móvil.',
   generator: 'Next.js',
