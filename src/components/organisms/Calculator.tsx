@@ -2,28 +2,14 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowLeftRight, Loader2Icon } from 'lucide-react'
-import { createClient } from '@supabase/supabase-js'
-import { Database } from '@/../generated/database.types'
 import { useQuery } from '@tanstack/react-query'
-import { isPresent } from 'ts-extras'
-import { formatRelative, setDefaultOptions } from 'date-fns'
+import { isPresent, objectEntries } from 'ts-extras'
+import { setDefaultOptions } from 'date-fns'
 import { es } from 'date-fns/locale'
+import { supabaseClient } from '@/lib/data/supabase-client'
+import { currencyInfo } from '@/types/currency'
 
 setDefaultOptions({ locale: es })
-
-const currencies = [
-  { code: 'USD', name: 'Dólar Estadounidense', symbol: '$' },
-  { code: 'EUR', name: 'Euro', symbol: '€' },
-  { code: 'CNY', name: 'Yuan', symbol: '¥' },
-  { code: 'TRY', name: 'Lira', symbol: '₺' },
-  { code: 'RUB', name: 'Rublo', symbol: '₽' },
-  { code: 'VED', name: 'Bolívar', symbol: 'Bs. D' },
-]
-
-const supabase = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-)
 
 function calculate(input: number, base: number, target: number): number {
   return (input / base) * target
@@ -37,7 +23,7 @@ export default function Calculator() {
   } = useQuery({
     queryKey: ['exchange-rates'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('latest_exchange_rates')
         .select('*')
 
@@ -147,11 +133,16 @@ export default function Calculator() {
                         onChange={(e) => setFromCurrency(e.target.value)}
                         className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-end focus:border-transparent'
                       >
-                        {currencies.map((currency) => (
-                          <option key={currency.code} value={currency.code}>
-                            {currency.code} - {currency.name}
+                        {objectEntries(currencyInfo).map(([k, v]) => (
+                          <option key={k} value={k}>
+                            {k} - {v.name}
                           </option>
                         ))}
+                        {/*{CurrencyInfo.map((currency) => (*/}
+                        {/*  <option key={currency.code} value={currency.code}>*/}
+                        {/*    {currency.code} - {currency.name}*/}
+                        {/*  </option>*/}
+                        {/*))}*/}
                       </select>
                     </div>
                     <div>
@@ -167,9 +158,9 @@ export default function Calculator() {
                         onChange={(e) => setToCurrency(e.target.value)}
                         className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-end focus:border-transparent'
                       >
-                        {currencies.map((currency) => (
-                          <option key={currency.code} value={currency.code}>
-                            {currency.code} - {currency.name}
+                        {objectEntries(currencyInfo).map(([k, v]) => (
+                          <option key={k} value={k}>
+                            {k} - {v.name}
                           </option>
                         ))}
                       </select>

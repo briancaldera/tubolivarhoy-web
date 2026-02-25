@@ -2,6 +2,7 @@ import Hero from '@/components/organisms/Hero'
 import Features from '@/components/organisms/Features'
 import Calculator from '@/components/organisms/Calculator'
 import { ErrorBoundary } from 'react-error-boundary'
+import { ExchangeRatesChart } from '@/components/organisms/exchange-rates-chart'
 
 export default function Page() {
   return (
@@ -21,6 +22,7 @@ export default function Page() {
       <ErrorBoundary fallback={<div>No se pudo cargar la calculadora</div>}>
         <Calculator />
       </ErrorBoundary>
+      <ExchangeRatesChart />
     </main>
   )
 }

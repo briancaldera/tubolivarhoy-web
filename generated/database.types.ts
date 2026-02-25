@@ -10,13 +10,34 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "14.1"
   }
   public: {
     Tables: {
       [_ in never]: never
     }
     Views: {
+      exchange_rates_last_month: {
+        Row: {
+          currency: string | null
+          id: string | null
+          rate: number | null
+          registered_at: string | null
+        }
+        Insert: {
+          currency?: string | null
+          id?: string | null
+          rate?: number | null
+          registered_at?: string | null
+        }
+        Update: {
+          currency?: string | null
+          id?: string | null
+          rate?: number | null
+          registered_at?: string | null
+        }
+        Relationships: []
+      }
       latest_exchange_rates: {
         Row: {
           currency: string | null
@@ -28,7 +49,7 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      get_latest_exchange_ids: { Args: never; Returns: string[] }
     }
     Enums: {
       [_ in never]: never
