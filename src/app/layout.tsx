@@ -33,7 +33,6 @@ export default function RootLayout({
         async={true}
         crossOrigin='anonymous'
       />
-      {/*<Script src='/js/ad-sense-script.js' />*/}
     </html>
   )
 }
