@@ -4,6 +4,7 @@ import Navbar from '@/components/organisms/Navbar'
 import Footer from '@/components/organisms/Footer'
 import './global.css'
 import { ReactQueryClientProvider } from '@/providers/react-query-client-provider'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title:
@@ -27,11 +28,11 @@ export default function RootLayout({
           <Footer />
         </ReactQueryClientProvider>
       </body>
-      {/*<Script*/}
-      {/*  src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'*/}
-      {/*  async={true}*/}
-      {/*  crossOrigin='anonymous'*/}
-      {/*/>*/}
+      <Script
+        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+        async={true}
+        crossOrigin='anonymous'
+      />
       {/*<Script src='/js/ad-sense-script.js' />*/}
     </html>
   )
