@@ -4,7 +4,7 @@ import Navbar from '@/components/organisms/Navbar'
 import Footer from '@/components/organisms/Footer'
 import './global.css'
 import { ReactQueryClientProvider } from '@/providers/react-query-client-provider'
-import Head from 'next/head'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
   title:
@@ -33,6 +33,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Toaster />
         </ReactQueryClientProvider>
       </body>
     </html>
