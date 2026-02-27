@@ -5,6 +5,7 @@ import Footer from '@/components/organisms/Footer'
 import './global.css'
 import { ReactQueryClientProvider } from '@/providers/react-query-client-provider'
 import { Toaster } from '@/components/ui/sonner'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title:
@@ -21,13 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      <head>
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
-          crossOrigin='anonymous'
-        ></script>
-      </head>
       <body className={`antialiased`}>
         <ReactQueryClientProvider>
           <Navbar />
@@ -36,6 +30,11 @@ export default function RootLayout({
           <Toaster />
         </ReactQueryClientProvider>
       </body>
+      <Script
+        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+        async={true}
+        crossOrigin='anonymous'
+      />
     </html>
   )
 }

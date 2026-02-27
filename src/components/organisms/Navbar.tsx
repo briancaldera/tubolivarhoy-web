@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { CurrentUserAvatar } from '@/components/current-user-avatar'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -38,6 +39,7 @@ export default function Navbar() {
             >
               Descargar
             </Link>
+            <CurrentUserAvatar />
           </div>
 
           <div className='md:hidden flex items-center'>
@@ -76,6 +78,7 @@ export default function Navbar() {
             >
               Descargar
             </Link>
+            <CurrentUserAvatar />
           </div>
         </div>
       )}
