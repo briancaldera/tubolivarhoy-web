@@ -1,12 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { CurrentUserAvatar } from '@/components/current-user-avatar'
+import { useSession } from '@/hooks/use-session'
+import { Button } from '@/components/ui/button'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const session = useSession()
 
   return (
     <nav className='sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100'>
@@ -33,13 +36,18 @@ export default function Navbar() {
             >
               Funcionalidades
             </Link>
-            <Link
-              href='https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share'
-              className='bg-linear-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity'
-            >
-              Descargar
-            </Link>
-            <CurrentUserAvatar />
+            {session && (
+              <div className='gap-x-2 flex items-center'>
+                <Button
+                  size='xs'
+                  className='bg-linear-60 from-primary-start to-primary-end'
+                  asChild={true}
+                >
+                  <Link href='/auth'>Panel Principal</Link>
+                </Button>
+                <CurrentUserAvatar />
+              </div>
+            )}
           </div>
 
           <div className='md:hidden flex items-center'>
@@ -78,7 +86,18 @@ export default function Navbar() {
             >
               Descargar
             </Link>
-            <CurrentUserAvatar />
+            {session && (
+              <>
+                <Button
+                  size='xs'
+                  className='bg-linear-60 from-primary-start to-primary-end'
+                  asChild={true}
+                >
+                  <Link href='/auth'>Panel Principal</Link>
+                </Button>
+                <CurrentUserAvatar />
+              </>
+            )}
           </div>
         </div>
       )}

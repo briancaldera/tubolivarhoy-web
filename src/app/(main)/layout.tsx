@@ -6,6 +6,7 @@ import '../global.css'
 import { ReactQueryClientProvider } from '@/providers/react-query-client-provider'
 import { Toaster } from '@/components/ui/sonner'
 import Script from 'next/script'
+import { Geist, Geist_Mono, Inter, Roboto_Flex } from 'next/font/google'
 
 export const metadata: Metadata = {
   title:
@@ -14,6 +15,26 @@ export const metadata: Metadata = {
     'Observa el tipo de cambio de referencia cómodamente desde tu móvil.',
   generator: 'Next.js',
 }
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
+
+const interFont = Inter({
+  variable: '--font-inter',
+  subsets: ['latin'],
+})
+
+const robotoFont = Roboto_Flex({
+  variable: '--font-roboto',
+  subsets: ['latin'],
+})
 
 export default function RootLayout({
   children,
@@ -29,12 +50,21 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </ReactQueryClientProvider>
+        <Script
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+          async={true}
+          crossOrigin='anonymous'
+        />
+        <Script
+          src='https://accounts.google.com/gsi/client'
+          async={true}
+          referrerPolicy={
+            process.env.NODE_ENV === 'production'
+              ? 'strict-origin-when-cross-origin'
+              : 'no-referrer-when-downgrade'
+          }
+        />
       </body>
-      <Script
-        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
-        async={true}
-        crossOrigin='anonymous'
-      />
     </html>
   )
 }
