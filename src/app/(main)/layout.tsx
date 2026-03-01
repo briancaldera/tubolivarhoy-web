@@ -43,7 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      <body className={`antialiased`}>
+      <body
+        className={`${interFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ReactQueryClientProvider>
           <Navbar />
           {children}
