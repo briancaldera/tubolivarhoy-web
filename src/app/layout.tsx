@@ -30,10 +30,10 @@ export default function RootLayout({
       </body>
       <Script
         src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+        strategy='beforeInteractive'
         async={true}
         crossOrigin='anonymous'
       />
-      {/*<Script src='/js/ad-sense-script.js' />*/}
     </html>
   )
 }
