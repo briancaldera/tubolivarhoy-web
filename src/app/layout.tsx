@@ -27,13 +27,13 @@ export default function RootLayout({
           {children}
           <Footer />
         </ReactQueryClientProvider>
+        <Script
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+          strategy='beforeInteractive'
+          async={true}
+          crossOrigin='anonymous'
+        />
       </body>
-      <Script
-        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
-        strategy='beforeInteractive'
-        async={true}
-        crossOrigin='anonymous'
-      />
     </html>
   )
 }
