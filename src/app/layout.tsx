@@ -4,7 +4,7 @@ import Navbar from '@/components/organisms/Navbar'
 import Footer from '@/components/organisms/Footer'
 import './global.css'
 import { ReactQueryClientProvider } from '@/providers/react-query-client-provider'
-import Script from 'next/script'
+import Head from 'next/head'
 
 export const metadata: Metadata = {
   title:
@@ -21,18 +21,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
+      <head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+          crossOrigin='anonymous'
+        ></script>
+      </head>
       <body className={`antialiased`}>
         <ReactQueryClientProvider>
           <Navbar />
           {children}
           <Footer />
         </ReactQueryClientProvider>
-        <Script
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
-          strategy='beforeInteractive'
-          async={true}
-          crossOrigin='anonymous'
-        />
       </body>
     </html>
   )
