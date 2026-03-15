@@ -36,7 +36,7 @@ export default function Navbar() {
             >
               Funcionalidades
             </Link>
-            {user && (
+            {user ? (
               <div className='flex items-center gap-x-2'>
                 <Button
                   size='xs'
@@ -47,9 +47,15 @@ export default function Navbar() {
                 </Button>
                 <CurrentUserAvatar />
               </div>
+            ) : (
+              <Link
+                href='/login'
+                className='hover:text-primary-end text-gray-700 transition-colors'
+              >
+                Iniciar sesión
+              </Link>
             )}
           </div>
-
           <div className='flex items-center md:hidden'>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -86,7 +92,7 @@ export default function Navbar() {
             >
               Descargar
             </Link>
-            {user && (
+            {user ? (
               <>
                 <Button
                   size='xs'
@@ -97,6 +103,13 @@ export default function Navbar() {
                 </Button>
                 <CurrentUserAvatar />
               </>
+            ) : (
+              <Link
+                href='/login'
+                className='hover:text-primary-end text-gray-700 transition-colors'
+              >
+                Iniciar sesión
+              </Link>
             )}
           </div>
         </div>
