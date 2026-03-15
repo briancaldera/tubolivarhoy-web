@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { CurrentUserAvatar } from '@/components/current-user-avatar'
-import { useCurrentUserName } from '@/hooks/use-current-user-name'
 import { useSession } from '@/hooks/use-session'
 import { useMutation } from '@tanstack/react-query'
 import { supabaseClient } from '@/lib/supabase/client'
@@ -20,7 +19,6 @@ import { useRouter } from 'next/navigation'
 export const title = 'Profile Dropdown with Status'
 
 export function UserAvatarMenu() {
-  const name = useCurrentUserName()
   const session = useSession()
   const router = useRouter()
 
@@ -35,9 +33,13 @@ export function UserAvatarMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className='relative h-10 w-10 rounded-full' variant='ghost'>
+        <Button
+          className='relative h-10 w-10 rounded-full'
+          variant='ghost'
+          aria-label='Abrir menú de usuario'
+        >
           <CurrentUserAvatar />
-          <span className='absolute right-0 bottom-0 h-3 w-3 rounded-full bg-green-500 ring-2 ring-background' />
+          <span className='ring-background absolute right-0 bottom-0 h-3 w-3 rounded-full bg-green-500 ring-2' />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-64'>
@@ -45,9 +47,11 @@ export function UserAvatarMenu() {
           <div className='flex items-center gap-3'>
             <CurrentUserAvatar />
             <div className='flex flex-col space-y-1'>
-              <p className='text-sm leading-none font-medium'>{name}</p>
-              <p className='text-xs leading-none text-muted-foreground'>
-                {session?.email ?? ''}
+              <p className='text-sm leading-none font-medium'>
+                {session.user?.name}
+              </p>
+              <p className='text-muted-foreground text-xs leading-none'>
+                {session?.user?.email}
               </p>
             </div>
           </div>

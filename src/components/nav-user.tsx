@@ -21,10 +21,20 @@ import {
 import { CurrentUserAvatar } from '@/components/current-user-avatar'
 import { signOut } from '@/actions'
 import { useSession } from '@/hooks/use-session'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export function NavUser() {
   const { user } = useSession()
   const { isMobile } = useSidebar()
+
+  const queryClient = useQueryClient()
+  const logoutMutation = useMutation({
+    mutationKey: ['logout'],
+    mutationFn: signOut,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['session'] })
+    },
+  })
 
   return (
     <SidebarMenu>
@@ -84,7 +94,7 @@ export function NavUser() {
               {/*</DropdownMenuItem>*/}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={signOut}>
+            <DropdownMenuItem onClick={() => logoutMutation.mutate()}>
               <LogOut />
               Cerrar sesión
             </DropdownMenuItem>

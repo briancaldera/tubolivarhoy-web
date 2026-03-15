@@ -5,7 +5,7 @@ export const useSession = () => {
   const { data, isPending, error } = useQuery({
     queryKey: ['session'],
     queryFn: getSession,
-    staleTime: 10 * 60 * 1000,
+    staleTime: 30 * 60 * 1000,
   })
 
   return {

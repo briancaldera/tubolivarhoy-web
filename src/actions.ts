@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { Route } from 'next'
 import { Session } from '@/types/session'
+import { z } from 'zod'
 
 export async function googleSignIn() {
   const supabase = await createClient()
@@ -11,7 +12,7 @@ export async function googleSignIn() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: process.env.AUTH_CALLBACK_URL,
+      redirectTo: z.string().nonempty().parse(process.env.AUTH_CALLBACK_URL),
     },
   })
 
@@ -27,7 +28,9 @@ export async function signOut() {
 
   const { error } = await supabase.auth.signOut()
 
-  if (!error) redirect('/')
+  if (error) throw error
+
+  redirect('/')
 }
 
 export async function getSession(): Promise<Session | null> {

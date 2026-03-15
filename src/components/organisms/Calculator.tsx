@@ -111,6 +111,8 @@ export default function Calculator() {
 
                 <div className='flex items-center justify-center'>
                   <button
+                    type='button'
+                    aria-label='Intercambiar monedas'
                     onClick={swapCurrencies}
                     className='rounded-full bg-gray-100 p-3 transition-colors hover:bg-gray-200'
                   >

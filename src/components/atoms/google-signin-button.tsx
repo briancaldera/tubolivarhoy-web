@@ -11,7 +11,7 @@ export function GoogleSignInButton() {
         alt='Google Icon'
         className='size-5'
       />
-      <span>Continue with Google</span>
+      <span>Continuar con Google</span>
     </Button>
   )
 }
