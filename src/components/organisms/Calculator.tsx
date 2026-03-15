@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { isPresent, objectEntries } from 'ts-extras'
 import { setDefaultOptions } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { supabaseClient } from '@/lib/data/supabase-client'
+import { supabaseClient } from '@/lib/supabase/client'
 import { currencyInfo } from '@/types/currency'
 
 setDefaultOptions({ locale: es })
@@ -38,8 +38,8 @@ export default function Calculator() {
   })
 
   const [amount, setAmount] = useState(1)
-  const [fromCurrency, setFromCurrency] = useState('VED')
-  const [toCurrency, setToCurrency] = useState('USD')
+  const [fromCurrency, setFromCurrency] = useState('USD')
+  const [toCurrency, setToCurrency] = useState('VED')
   const [result, setResult] = useState(0)
 
   const exchangeRates = useMemo(() => {
@@ -72,11 +72,11 @@ export default function Calculator() {
   }
 
   return (
-    <section id='calculator' className='py-20 bg-gray-50'>
+    <section id='calculator' className='bg-gray-50 py-20'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center max-w-3xl mx-auto mb-16'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-            <span className='bg-linear-to-r from-primary-start to-primary-end bg-clip-text text-transparent'>
+        <div className='mx-auto mb-16 max-w-3xl text-center'>
+          <h2 className='mb-4 text-3xl font-bold md:text-4xl'>
+            <span className='from-primary-start to-primary-end bg-linear-to-r bg-clip-text text-transparent'>
               Calculadora
             </span>
           </h2>
@@ -85,11 +85,11 @@ export default function Calculator() {
           </p>
         </div>
 
-        <div className='max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6 md:p-8'>
+        <div className='mx-auto max-w-3xl rounded-xl bg-white p-6 shadow-md md:p-8'>
           {!isLoadingExchangeRates ? (
             <div>
-              <div className='grid grid-cols-1 md:grid-cols-5 gap-6 items-end'>
-                <div className='md:col-span-2 space-y-2'>
+              <div className='grid grid-cols-1 items-end gap-6 md:grid-cols-5'>
+                <div className='space-y-2 md:col-span-2'>
                   <label
                     htmlFor='amount'
                     className='block text-sm font-medium text-gray-700'
@@ -105,20 +105,22 @@ export default function Calculator() {
                     onChange={(e) =>
                       setAmount(Number.parseFloat(e.target.value) || 0)
                     }
-                    className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-end focus:border-transparent'
+                    className='focus:ring-primary-end w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:outline-none'
                   />
                 </div>
 
-                <div className='flex justify-center items-center'>
+                <div className='flex items-center justify-center'>
                   <button
+                    type='button'
+                    aria-label='Intercambiar monedas'
                     onClick={swapCurrencies}
-                    className='p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors'
+                    className='rounded-full bg-gray-100 p-3 transition-colors hover:bg-gray-200'
                   >
-                    <ArrowLeftRight className='w-5 h-5 text-gray-600' />
+                    <ArrowLeftRight className='h-5 w-5 text-gray-600' />
                   </button>
                 </div>
 
-                <div className='md:col-span-2 space-y-2'>
+                <div className='space-y-2 md:col-span-2'>
                   <div className='grid grid-cols-2 gap-4'>
                     <div>
                       <label
@@ -131,7 +133,7 @@ export default function Calculator() {
                         id='fromCurrency'
                         value={fromCurrency}
                         onChange={(e) => setFromCurrency(e.target.value)}
-                        className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-end focus:border-transparent'
+                        className='focus:ring-primary-end w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:outline-none'
                       >
                         {objectEntries(currencyInfo).map(([k, v]) => (
                           <option key={k} value={k}>
@@ -156,7 +158,7 @@ export default function Calculator() {
                         id='toCurrency'
                         value={toCurrency}
                         onChange={(e) => setToCurrency(e.target.value)}
-                        className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-end focus:border-transparent'
+                        className='focus:ring-primary-end w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:outline-none'
                       >
                         {objectEntries(currencyInfo).map(([k, v]) => (
                           <option key={k} value={k}>
@@ -169,15 +171,15 @@ export default function Calculator() {
                 </div>
               </div>
 
-              <div className='mt-8 p-6 bg-gray-50 rounded-lg'>
+              <div className='mt-8 rounded-lg bg-gray-50 p-6'>
                 <div className='text-center'>
-                  <p className='text-sm text-gray-500 mb-2'>
+                  <p className='mb-2 text-sm text-gray-500'>
                     Monto Equivalente
                   </p>
                   <div className='text-3xl font-bold'>
                     {result.toFixed(2)} {toCurrency}
                   </div>
-                  <p className='text-sm text-gray-500 mt-2'>
+                  <p className='mt-2 text-sm text-gray-500'>
                     {amount} {fromCurrency} = {result.toFixed(2)} {toCurrency}
                   </p>
                 </div>

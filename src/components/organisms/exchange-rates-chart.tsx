@@ -26,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { supabaseClient } from '@/lib/data/supabase-client'
+import { supabaseClient } from '@/lib/supabase/client'
 import { arrayIncludes, assertPresent, isPresent } from 'ts-extras'
 
 const chartConfig = {
