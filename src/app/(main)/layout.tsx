@@ -43,6 +43,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
+      <head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
+          crossOrigin='anonymous'
+        ></script>
+      </head>
       <body
         className={`${interFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -52,11 +59,6 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </ReactQueryClientProvider>
-        <Script
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5292679352028725'
-          async={true}
-          crossOrigin='anonymous'
-        />
         <Script
           src='https://accounts.google.com/gsi/client'
           async={true}
