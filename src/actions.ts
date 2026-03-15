@@ -14,8 +14,11 @@ export async function googleSignIn() {
       redirectTo: 'http://localhost:3000/auth/callback',
     },
   })
+
+  if (error) redirect('/error')
+
   if (data.url) {
-    redirect(data.url as Route) // use the redirect API for your server framework
+    redirect(data.url as Route)
   }
 }
 
