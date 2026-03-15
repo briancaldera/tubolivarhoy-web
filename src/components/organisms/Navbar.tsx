@@ -3,47 +3,63 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { CurrentUserAvatar } from '@/components/current-user-avatar'
+import { useSession } from '@/hooks/use-session'
+import { Button } from '@/components/ui/button'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { user } = useSession()
 
   return (
-    <nav className='sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100'>
+    <nav className='sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between items-center h-16'>
+        <div className='flex h-16 items-center justify-between'>
           <div className='flex items-center'>
             <Link href='/' className='flex items-center'>
-              <span className='text-2xl font-bold bg-linear-to-r from-primary-start to-primary-end bg-clip-text text-transparent'>
+              <span className='from-primary-start to-primary-end bg-linear-to-r bg-clip-text text-2xl font-bold text-transparent'>
                 Tu Bolívar Hoy
               </span>
             </Link>
           </div>
 
-          <div className='hidden md:flex items-center space-x-8'>
+          <div className='hidden items-center space-x-8 md:flex'>
             <Link
               href='https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share'
-              className='text-gray-700 hover:text-primary-end transition-colors'
+              className='hover:text-primary-end text-gray-700 transition-colors'
             >
               Consigue la app
             </Link>
             <Link
               href='/#features'
-              className='text-gray-700 hover:text-primary-end transition-colors'
+              className='hover:text-primary-end text-gray-700 transition-colors'
             >
               Funcionalidades
             </Link>
-            <Link
-              href='https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share'
-              className='bg-linear-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity'
-            >
-              Descargar
-            </Link>
+            {user ? (
+              <div className='flex items-center gap-x-2'>
+                <Button
+                  size='xs'
+                  className='from-primary-start to-primary-end bg-linear-60'
+                  asChild={true}
+                >
+                  <Link href='/auth'>Panel Principal</Link>
+                </Button>
+                <CurrentUserAvatar />
+              </div>
+            ) : (
+              <Link
+                href='/login'
+                className='hover:text-primary-end text-gray-700 transition-colors'
+              >
+                Iniciar sesión
+              </Link>
+            )}
           </div>
-
-          <div className='md:hidden flex items-center'>
+          <div className='flex items-center md:hidden'>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className='text-gray-700 hover:text-primary-end focus:outline-none'
+              className='hover:text-primary-end text-gray-700 focus:outline-none'
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -53,29 +69,48 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className='md:hidden bg-white border-b border-gray-100'>
-          <div className='container mx-auto px-4 py-4 space-y-3'>
+        <div className='border-b border-gray-100 bg-white md:hidden'>
+          <div className='container mx-auto space-y-3 px-4 py-4'>
             <Link
               href='https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share'
-              className='block text-gray-700 hover:text-primary-end transition-colors'
+              className='hover:text-primary-end block text-gray-700 transition-colors'
               onClick={() => setIsMenuOpen(false)}
             >
               Consigue la app
             </Link>
             <Link
               href='/#features'
-              className='block text-gray-700 hover:text-primary-end transition-colors'
+              className='hover:text-primary-end block text-gray-700 transition-colors'
               onClick={() => setIsMenuOpen(false)}
             >
               Funcionalidades
             </Link>
             <Link
               href='https://play.google.com/store/apps/details?id=com.briancaldera.tubolivarhoy&pcampaignid=web_share'
-              className='block bg-linear-to-r from-primary-start to-primary-end text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity w-fit'
+              className='from-primary-start to-primary-end block w-fit rounded-md bg-linear-to-r px-4 py-2 text-white transition-opacity hover:opacity-90'
               onClick={() => setIsMenuOpen(false)}
             >
               Descargar
             </Link>
+            {user ? (
+              <>
+                <Button
+                  size='xs'
+                  className='from-primary-start to-primary-end bg-linear-60'
+                  asChild={true}
+                >
+                  <Link href='/auth'>Panel Principal</Link>
+                </Button>
+                <CurrentUserAvatar />
+              </>
+            ) : (
+              <Link
+                href='/login'
+                className='hover:text-primary-end text-gray-700 transition-colors'
+              >
+                Iniciar sesión
+              </Link>
+            )}
           </div>
         </div>
       )}

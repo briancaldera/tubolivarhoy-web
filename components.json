@@ -4,7 +4,7 @@
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.ts",
+    "config": "",
     "css": "src/app/global.css",
     "baseColor": "gray",
     "cssVariables": true,
@@ -19,5 +19,8 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@supabase": "https://supabase.com/ui/r/{name}.json",
+    "@shadcnblocks": "https://shadcnblocks.com/r/{name}.json"
+  }
 }
