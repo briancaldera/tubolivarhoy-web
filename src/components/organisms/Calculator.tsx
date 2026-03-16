@@ -97,8 +97,9 @@ export default function Calculator() {
                     Monto
                   </label>
                   <input
+                    autoComplete='off'
                     min={0}
-                    inputMode='numeric'
+                    inputMode='decimal'
                     type='number'
                     id='amount'
                     value={amount}
@@ -177,10 +178,27 @@ export default function Calculator() {
                     Monto Equivalente
                   </p>
                   <div className='text-3xl font-bold'>
-                    {result.toFixed(2)} {toCurrency}
+                    {result.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                      style: 'currency',
+                      currency: toCurrency,
+                      currencyDisplay: 'narrowSymbol',
+                    })}
                   </div>
                   <p className='mt-2 text-sm text-gray-500'>
-                    {amount} {fromCurrency} = {result.toFixed(2)} {toCurrency}
+                    {amount.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                      style: 'currency',
+                      currency: fromCurrency,
+                      currencyDisplay: 'narrowSymbol',
+                    })}{' '}
+                    ={' '}
+                    {result.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                      style: 'currency',
+                      currency: toCurrency,
+                      currencyDisplay: 'narrowSymbol',
+                    })}
                   </p>
                 </div>
               </div>
