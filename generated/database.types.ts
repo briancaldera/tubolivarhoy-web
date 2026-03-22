@@ -47,9 +47,48 @@ export type Database = {
         }
         Relationships: []
       }
+      my_api_keys: {
+        Row: {
+          created_at: string | null
+          expires_at: string | null
+          id: string | null
+          last_used_at: string | null
+          name: string | null
+          owner_id: string | null
+          prefix: string | null
+          revoked_at: string | null
+          scopes: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string | null
+          last_used_at?: string | null
+          name?: string | null
+          owner_id?: string | null
+          prefix?: string | null
+          revoked_at?: string | null
+          scopes?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string | null
+          last_used_at?: string | null
+          name?: string | null
+          owner_id?: string | null
+          prefix?: string | null
+          revoked_at?: string | null
+          scopes?: Json | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      get_latest_exchange_ids: { Args: never; Returns: string[] }
+      get_last_month_exchange_ids: { Args: never; Returns: string[] }
     }
     Enums: {
       [_ in never]: never

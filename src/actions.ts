@@ -38,10 +38,13 @@ export async function getSession(): Promise<Session | null> {
   const res = await supabase.auth.getSession()
 
   if (!res.data.session) return null
+  res.data.session.access_token
 
   return {
+    id: res.data.session.user.id,
     email: res.data.session?.user.email ?? null,
     name: res.data.session?.user?.user_metadata.full_name ?? '?',
     avatar: res.data.session?.user.user_metadata.avatar_url ?? null,
+    accessToken: res.data.session.access_token,
   }
 }
