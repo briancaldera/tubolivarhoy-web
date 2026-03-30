@@ -25,7 +25,7 @@ export function EmptyApiKeys({ onCreateKey }: { onCreateKey: () => void }) {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <Button onClick={onCreateKey}>
+        <Button onClick={onCreateKey} className='bg-tbh-gradient'>
           <Plus />
           Crear API key
         </Button>
