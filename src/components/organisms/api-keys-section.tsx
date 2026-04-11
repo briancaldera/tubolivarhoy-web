@@ -26,7 +26,7 @@ import { EllipsisVerticalIcon, PlusIcon, Trash2Icon } from 'lucide-react'
 import { KeyCreatedDialog } from '@/components/key-created-dialog'
 
 export function ApiKeysSection() {
-  const { isPending, error, apiKeys } = useApiKeys()
+  const { apiKeys } = useApiKeys()
   const [showCreateKeyForm, setShowCreateKeyForm] = useState(false)
   const [newKey, setNewKey] = useState<string | null>(null)
 

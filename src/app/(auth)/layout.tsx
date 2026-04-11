@@ -32,11 +32,6 @@ const interFont = Inter({
   subsets: ['latin'],
 })
 
-const robotoFont = Roboto_Flex({
-  variable: '--font-roboto',
-  subsets: ['latin'],
-})
-
 export default function RootLayout({
   children,
 }: Readonly<{
