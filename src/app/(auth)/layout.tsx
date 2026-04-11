@@ -8,6 +8,7 @@ import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import Script from 'next/script'
 import { AuthHeader } from '@/components/organisms/auth-header'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 export const metadata: Metadata = {
   title: 'Home - Tu Bolívar Hoy',
@@ -47,15 +48,17 @@ export default function RootLayout({
         className={`${interFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryClientProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <AuthHeader />
-              <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
-                {children}
-              </div>
-            </SidebarInset>
-          </SidebarProvider>
+          <TooltipProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <AuthHeader />
+                <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
+                  {children}
+                </div>
+              </SidebarInset>
+            </SidebarProvider>
+          </TooltipProvider>
         </ReactQueryClientProvider>
         <Toaster />
         <Script
