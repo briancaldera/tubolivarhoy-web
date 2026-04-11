@@ -1,4 +1,5 @@
 minimumReleaseAge: 10080
+
 minimumReleaseAgeExclude:
   - next
   - '@next/*'
@@ -6,3 +7,4 @@ minimumReleaseAgeExclude:
 onlyBuiltDependencies:
   - esbuild
   - sharp
+  - supabase

@@ -151,4 +151,8 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .bg-tbh-gradient {
+    @apply from-primary-start to-primary-end bg-linear-to-r;
+  }
 }
