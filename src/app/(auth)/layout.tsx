@@ -1,5 +1,5 @@
 import React from 'react'
-import { Geist, Geist_Mono, Inter, Roboto_Flex } from 'next/font/google'
+import { Geist, Geist_Mono, Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import '../global.css'
 import { ReactQueryClientProvider } from '@/providers/react-query-client-provider'
