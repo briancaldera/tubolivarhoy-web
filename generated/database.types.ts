@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.1"
+    PostgrestVersion: '14.1'
   }
   public: {
     Tables: {
@@ -47,9 +47,73 @@ export type Database = {
         }
         Relationships: []
       }
+      my_account_type: {
+        Row: {
+          quota: number | null
+          type: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      my_api_keys: {
+        Row: {
+          created_at: string | null
+          expires_at: string | null
+          id: string | null
+          last_used_at: string | null
+          name: string | null
+          owner_id: string | null
+          prefix: string | null
+          revoked_at: string | null
+          scopes: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string | null
+          last_used_at?: string | null
+          name?: string | null
+          owner_id?: string | null
+          prefix?: string | null
+          revoked_at?: string | null
+          scopes?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string | null
+          last_used_at?: string | null
+          name?: string | null
+          owner_id?: string | null
+          prefix?: string | null
+          revoked_at?: string | null
+          scopes?: Json | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      my_quota_usage: {
+        Row: {
+          quota: number | null
+          usage: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      rates_last_year: {
+        Row: {
+          rate_1y: number | null
+          rate_30d: number | null
+          rate_7d: number | null
+          rate_90d: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      get_latest_exchange_ids: { Args: never; Returns: string[] }
+      get_last_month_exchange_ids: { Args: never; Returns: string[] }
     }
     Enums: {
       [_ in never]: never

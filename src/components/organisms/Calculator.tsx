@@ -6,8 +6,8 @@ import { useQuery } from '@tanstack/react-query'
 import { isPresent, objectEntries } from 'ts-extras'
 import { setDefaultOptions } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { supabaseClient } from '@/lib/supabase/client'
 import { currencyInfo } from '@/types/currency'
+import { useSupabaseClient } from '@/hooks/use-supabase-client'
 
 setDefaultOptions({ locale: es })
 
@@ -16,6 +16,8 @@ function calculate(input: number, base: number, target: number): number {
 }
 
 export default function Calculator() {
+  const supabaseClient = useSupabaseClient()
+
   const {
     data,
     error,
