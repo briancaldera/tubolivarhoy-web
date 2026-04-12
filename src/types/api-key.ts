@@ -1,4 +1,4 @@
-type APIKey = Readonly<{
+export type APIKey = Readonly<{
   id: string
   name: string
   prefix: string

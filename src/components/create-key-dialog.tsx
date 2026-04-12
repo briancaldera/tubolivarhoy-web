@@ -24,7 +24,7 @@ export function CreateKeyDialog({
         <DialogHeader>
           <DialogTitle>Crear API key</DialogTitle>
           <DialogDescription>
-            Crea un nueva API key para que puedas conectarte a la API de Tu
+            Crea una nueva API key para que puedas conectarte a la API de Tu
             Bolivar Hoy
           </DialogDescription>
         </DialogHeader>

@@ -26,7 +26,7 @@ import { EllipsisVerticalIcon, PlusIcon, Trash2Icon } from 'lucide-react'
 import { KeyCreatedDialog } from '@/components/key-created-dialog'
 
 export function ApiKeysSection() {
-  const { apiKeys } = useApiKeys()
+  const { apiKeys, isPending, error } = useApiKeys()
   const [showCreateKeyForm, setShowCreateKeyForm] = useState(false)
   const [newKey, setNewKey] = useState<string | null>(null)
 
@@ -51,7 +51,11 @@ export function ApiKeysSection() {
         </CardHeader>
         <CardContent>
           <div>
-            {apiKeys && apiKeys.length !== 0 ? (
+            {isPending ? (
+              <P>Cargando API keys...</P>
+            ) : error ? (
+              <P>No se pudieron cargar las API keys</P>
+            ) : apiKeys && apiKeys.length !== 0 ? (
               <div>
                 <Table>
                   <TableHeader>

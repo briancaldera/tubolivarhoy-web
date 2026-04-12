@@ -14,12 +14,17 @@ import { Button } from '@/components/ui/button'
 import { Loader2Icon } from 'lucide-react'
 import { useSession } from '@/hooks/use-session'
 import { toast } from 'sonner'
-import { assertPresent } from 'ts-extras'
 import { createClient } from '@supabase/supabase-js'
 import { Database } from '../../generated/database.types'
 
 const FormSchema = z.object({
   name: z.string().trim().nonempty('Debe ingresar un nombre'),
+})
+
+const ResponseSchema = z.object({
+  id: z.string(),
+  apiKey: z.string(),
+  message: z.string(),
 })
 
 export function CreateKeyForm({
@@ -39,21 +44,19 @@ export function CreateKeyForm({
       )
 
       supabase.functions.setAuth(session.user?.accessToken ?? '')
-      const { data, error, response } = await supabase.functions.invoke<{
-        id: string
-        apiKey: string
-        message: string
-      }>('keys', {
-        method: 'POST',
-        body: {
-          name: name,
+      const { data, error, response } = await supabase.functions.invoke(
+        'keys',
+        {
+          method: 'POST',
+          body: {
+            name: name,
+          },
         },
-      })
+      )
 
-      if (error || !response?.ok) throw error
+      if (error) throw error
 
-      assertPresent(data)
-      return data
+      return ResponseSchema.parse(data)
     },
     onSuccess: (data) => {
       toast.success('🔑 API key creada.')
@@ -96,6 +99,7 @@ export function CreateKeyForm({
           <Field aria-invalid={!field.state.meta.isValid}>
             <FieldLabel htmlFor={field.name}>Nombre de la API key</FieldLabel>
             <Input
+              value={field.state.value}
               id={field.name}
               name={field.name}
               onChange={(e) => field.handleChange(e.target.value)}

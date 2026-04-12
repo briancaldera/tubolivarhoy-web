@@ -21,7 +21,7 @@ export function CurrencyTrendCard({
   description: string
   bottomText: string
 }) {
-  const change = (newest - old) / old
+  const change = old === 0 ? 0 : (newest - old) / old
 
   let trendIcon = <MinusIcon />
   let trendMessage = 'Tendencia sin cambio'

@@ -1,8 +1,9 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-import { useSession } from '@/hooks/use-session'
-import { useSupabaseClient } from '@/hooks/use-supabase-client'
+import {useQuery} from '@tanstack/react-query'
+import {useSession} from '@/hooks/use-session'
+import {useSupabaseClient} from '@/hooks/use-supabase-client'
+import {APIKey} from '@/types/api-key'
 
 export function useApiKeys() {
   const { user } = useSession()
@@ -13,10 +14,14 @@ export function useApiKeys() {
     queryKey: ['keys', user?.id],
     staleTime: 20 * 60 * 1000,
     queryFn: async (): Promise<APIKey[] | null> => {
-      const res = await supabaseClient.from('my_api_keys').select('*')
+      const { data, error } = await supabaseClient
+        .from('my_api_keys')
+        .select('*')
+
+      if (error) throw error
 
       return (
-        res.data?.map((key) => {
+        data?.map((key) => {
           return {
             id: key.id ?? '',
             name: key.name ?? '',
