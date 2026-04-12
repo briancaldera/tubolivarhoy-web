@@ -2,28 +2,18 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { useSession } from '@/hooks/use-session'
-import { createClient } from '@supabase/supabase-js'
-import { Database } from '@/../generated/database.types'
+import { useSupabaseClient } from '@/hooks/use-supabase-client'
 
 export function useApiKeys() {
   const { user } = useSession()
+  const supabaseClient = useSupabaseClient()
 
   const { isPending, error, data } = useQuery({
     enabled: !!user,
     queryKey: ['keys', user?.id],
     staleTime: 20 * 60 * 1000,
     queryFn: async (): Promise<APIKey[] | null> => {
-      const supabase = createClient<Database>(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-        {
-          global: {
-            headers: {
-              Authorization: `Bearer ${user?.accessToken}`,
-            },
-          },
-        },
-      )
+      const supabase = supabaseClient
       const res = await supabase.from('my_api_keys').select('*')
 
       return (

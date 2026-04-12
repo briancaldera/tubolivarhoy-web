@@ -155,4 +155,8 @@
   .bg-tbh-gradient {
     @apply from-primary-start to-primary-end bg-linear-to-r;
   }
+
+  .text-tbh-gradient {
+    @apply text-transparent from-primary-start to-primary-end bg-linear-to-r bg-clip-text;
+  }
 }
