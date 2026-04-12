@@ -13,8 +13,7 @@ export function useApiKeys() {
     queryKey: ['keys', user?.id],
     staleTime: 20 * 60 * 1000,
     queryFn: async (): Promise<APIKey[] | null> => {
-      const supabase = supabaseClient
-      const res = await supabase.from('my_api_keys').select('*')
+      const res = await supabaseClient.from('my_api_keys').select('*')
 
       return (
         res.data?.map((key) => {

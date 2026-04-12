@@ -1,9 +1,5 @@
-import { useMemo } from 'react'
-import { useSession } from '@/hooks/use-session'
-import { createSupabaseClient } from '@/utils/create-supabase-client'
+import { useAppState } from '@/hooks/use-app-state'
 
 export function useSupabaseClient() {
-  const { user } = useSession()
-
-  return useMemo(() => createSupabaseClient(user?.accessToken), [user])
+  return useAppState((state) => state.supabaseClient)
 }

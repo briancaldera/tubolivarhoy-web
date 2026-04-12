@@ -8,19 +8,20 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { CurrentUserAvatar } from '@/components/current-user-avatar'
 import { useSession } from '@/hooks/use-session'
 import { useMutation } from '@tanstack/react-query'
-import { supabaseClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { useSupabaseClient } from '@/hooks/use-supabase-client'
 
 export const title = 'Profile Dropdown with Status'
 
 export function UserAvatarMenu() {
   const session = useSession()
   const router = useRouter()
+  const supabaseClient = useSupabaseClient()
 
   const logoutMutation = useMutation({
     mutationKey: ['logout'],
