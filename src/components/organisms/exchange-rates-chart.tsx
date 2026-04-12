@@ -12,12 +12,12 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import {
+  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-  type ChartConfig,
 } from '@/components/ui/chart'
 import {
   Select,
@@ -26,8 +26,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { supabaseClient } from '@/lib/supabase/client'
-import { arrayIncludes, assertPresent, isPresent } from 'ts-extras'
+import { arrayIncludes, assertPresent } from 'ts-extras'
+import { useSupabaseClient } from '@/hooks/use-supabase-client'
 
 const chartConfig = {
   exchange_rate: {
@@ -40,6 +40,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function ExchangeRatesChart() {
+  const supabaseClient = useSupabaseClient()
   const [currency, setCurrency] = useState<Currency>('USD')
 
   const query = useQuery({
@@ -58,11 +59,11 @@ export function ExchangeRatesChart() {
   })
 
   return (
-    <section id='datos-historicos' className='py-20 bg-gray-50'>
+    <section id='datos-historicos' className='bg-gray-50 py-20'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center max-w-3xl mx-auto mb-16'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-            <span className='bg-linear-to-r from-primary-start to-primary-end bg-clip-text text-transparent'>
+        <div className='mx-auto mb-16 max-w-3xl text-center'>
+          <h2 className='mb-4 text-3xl font-bold md:text-4xl'>
+            <span className='from-primary-start to-primary-end bg-linear-to-r bg-clip-text text-transparent'>
               Datos Históricos
             </span>
           </h2>
@@ -89,7 +90,7 @@ export function ExchangeRatesChart() {
                 }}
               >
                 <SelectTrigger
-                  className='w-[160px] rounded-lg sm:ml-auto sm:flex font-medium text-xs'
+                  className='w-[160px] rounded-lg text-xs font-medium sm:ml-auto sm:flex'
                   aria-label='Selecciona una moneda'
                 >
                   <SelectValue placeholder='USD' />

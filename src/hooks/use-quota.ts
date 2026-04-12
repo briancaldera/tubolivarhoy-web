@@ -1,29 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import { useSession } from '@/hooks/use-session'
-import { createClient } from '@supabase/supabase-js'
-import { Database } from '@/../generated/database.types'
 import { z } from 'zod'
+import { useSupabaseClient } from '@/hooks/use-supabase-client'
 
 export function useQuota() {
   const { user } = useSession()
+  const supabase = useSupabaseClient()
 
   const { data, isPending, error } = useQuery({
     queryKey: ['my-quota', { userId: user?.id }],
     staleTime: 1000 * 30,
     enabled: !!user,
     queryFn: async () => {
-      const supabase = createClient<Database>(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-        {
-          global: {
-            headers: {
-              Authorization: `Bearer ${user?.accessToken}`,
-            },
-          },
-        },
-      )
-
       const { data, error } = await supabase
         .from('my_quota_usage')
         .select('*')
